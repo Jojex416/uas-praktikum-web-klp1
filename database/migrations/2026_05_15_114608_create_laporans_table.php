@@ -11,45 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Membuat struktur tabel laporans saja (Tanpa ikatan di file ini)
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
-                        /*
-            |--------------------------------------------------------------------------
-            | FOREIGN KEY
-            |--------------------------------------------------------------------------
-            */
 
-            // User yang membuat laporan
-            $table->foreignId('user_id')
-                ->constrained('users')
-                ->onDelete('cascade');
-
-            // Kategori kerusakan
-            $table->foreignId('kategori_id')
-                ->constrained('kategoris')
-                ->onDelete('cascade');
-
-            // Status laporan
-            $table->foreignId('status_id')
-                ->constrained('statuses')
-                ->onDelete('cascade');
+            // Kolom angka biasa
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('kategori_id');
+            $table->unsignedBigInteger('status_id');
 
             /*
             |--------------------------------------------------------------------------
             | DATA LAPORAN
             |--------------------------------------------------------------------------
             */
-
-            // Judul laporan
             $table->string('judul');
-
-            // Lokasi kerusakan
             $table->string('lokasi');
-
-            // Deskripsi kerusakan
             $table->text('deskripsi');
-
-            // Upload foto
             $table->string('foto')->nullable();
             $table->timestamps();
         });

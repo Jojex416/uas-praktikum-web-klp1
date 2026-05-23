@@ -22,12 +22,12 @@ class DatabaseSeeder extends Seeder
         */
 
         // Admin
-        // User::create([
-        //     'name' => 'Admin Kampus',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => bcrypt('password'),
-        //     'role' => 'admin',
-        // ]);
+        User::create([
+            'name' => 'Admin Kampus',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('password'),
+            'role' => 'admin',
+        ]);
 
         // Teknisi
         User::create([
