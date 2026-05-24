@@ -100,7 +100,7 @@
                     <p class="text-xs text-gray-500" id="userRole">@yield('user_role', 'Role')</p>
                 </div>
                 <div class="w-9 h-9 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white text-sm font-semibold shadow-sm">
-                    {{ substr(@yield('user_name', 'U'), 0, 1) }}
+                    {{ substr(implode('', array_slice(str_split(view()->shared('user_name', 'U')), 0, 1)), 0, 1) }}
                 </div>
             </div>
         </nav>

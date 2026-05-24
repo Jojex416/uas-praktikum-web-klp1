@@ -1,12 +1,12 @@
-<aside class="sidebar-mobile fixed lg:relative w-64 bg-white border-r border-gray-200 min-h-screen z-50 shadow-sm">
-    <div class="p-6 border-b border-gray-100">
+<aside class="sidebar-mobile fixed lg:relative w-64 bg-white border-r border-gray-200 min-h-screen z-50 shadow-sm overflow-y-auto">
+    <div class="p-5 border-b border-gray-100">
         <div class="flex items-center gap-2">
             <div class="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
                 <i class="fas fa-clipboard-list text-white text-sm"></i>
             </div>
             <div>
                 <h1 class="text-xl font-bold text-gray-800">LaporKampus</h1>
-                <p class="text-xs text-gray-400">Sistem Pelaporan Fasilitas</p>
+                <p class="text-xs text-gray-400">Sistem Pelaporan</p>
             </div>
         </div>
     </div>
@@ -14,27 +14,31 @@
     <nav class="p-4">
         <div class="mb-6 p-3 bg-blue-50 rounded-xl">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-semibold">AR</div>
+                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                    {{ substr(Auth::user()->name ?? 'U', 0, 1) }}
+                </div>
                 <div>
-                    <p class="text-sm font-semibold text-gray-800">{{ Auth::user()->name ?? 'Aulia Rahma' }}</p>
+                    <p class="text-sm font-semibold text-gray-800">{{ Auth::user()->name ?? 'Mahasiswa' }}</p>
                     <p class="text-xs text-blue-600">Mahasiswa</p>
                 </div>
             </div>
         </div>
         
-        <a href="{{ route('mahasiswa.dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 mb-1">
+        <a href="{{ route('mahasiswa.dashboard') }}" 
+           class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 mb-1 {{ request()->routeIs('mahasiswa.dashboard') ? 'bg-blue-50 text-blue-600' : '' }}">
             <i class="fas fa-tachometer-alt w-5"></i>
             <span>Dashboard</span>
         </a>
         
-        <a href="{{ route('mahasiswa.buat-laporan') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 mb-1">
+        <a href="{{ route('mahasiswa.buat-laporan') }}" 
+           class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 mb-1 {{ request()->routeIs('mahasiswa.buat-laporan') ? 'bg-blue-50 text-blue-600' : '' }}">
             <i class="fas fa-plus-circle w-5"></i>
             <span>Buat Laporan</span>
         </a>
         
         <div class="border-t border-gray-100 my-4"></div>
         
-        <form method="POST" action="{{ route('logout') }}" class="mt-2">
+        <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-500 hover:bg-red-50 hover:text-red-600 transition-all duration-200 w-full">
                 <i class="fas fa-sign-out-alt w-5"></i>
